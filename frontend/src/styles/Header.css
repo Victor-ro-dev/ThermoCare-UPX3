@@ -1,0 +1,78 @@
+.header {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border-bottom: 1px solid #84898fa4;
+  min-height: 60px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  color: white;
+}
+
+.logo p{
+  line-height: 28px;
+  size: 20px;
+}
+
+.logo img {
+  height: 35px;
+  margin-right: 5px;
+}
+
+.navigation ul {
+  list-style: none;
+  display: flex;
+  gap: 40px;
+}
+
+.navigation a {
+  text-decoration: none;
+  color: #ffffff;
+  padding: 5px 10px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  border-radius: 5px;
+}
+
+.navigation a:hover {
+  background-color: #cfcfcf3f; /* Cor de fundo ao passar o mouse sobre o link */
+  color: #ffffff; /* Cor do texto ao passar o mouse sobre o link */
+  border-radius: 5px; /* Adiciona bordas arredondadas ao link */
+}
+
+.auth-buttons {
+  display: flex;
+  gap: 40px;
+}
+
+.auth-buttons .signin,
+.auth-buttons .signup {
+  padding: 5px 10px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease; /* Adiciona transição suave */
+}
+
+.auth-buttons .signin {
+  border: 1px solid #d5dce4;
+  border-radius: 5px;
+  color: white;
+}
+
+.auth-buttons .signin:hover {
+  background-color: #d5dce4; /* Cor de fundo ao passar o mouse sobre o botão */
+  color: #111111; /* Cor do texto ao passar o mouse sobre o botão */
+}
+
+.auth-buttons .signup {
+  background: linear-gradient(90deg, #0e44f6, #0e12f6);
+  border-radius: 5px;
+  color: white;
+}
+
+.auth-buttons .signup:hover {
+  transform: scale(1.05); 
+}
+

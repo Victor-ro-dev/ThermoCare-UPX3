@@ -1,0 +1,38 @@
+.about {
+    padding: 20px;
+    margin: 50px 0px;
+    text-align: center;
+    border-top: #333 solid 1px;
+}
+
+.about h2 {
+    font-size: 3.5em;
+    margin-bottom: 20px;
+    color: white;
+
+}
+
+.about p {
+    font-size: 1.2em;
+    line-height: 1.6;
+    color: white;
+    margin-bottom: 10px;
+}
+
+.about-content {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 10px;
+}
+
+.about-text {
+    width: 40%;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.about-image {
+    width: 80%;
+    
+}

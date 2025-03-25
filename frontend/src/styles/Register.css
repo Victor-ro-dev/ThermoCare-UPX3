@@ -1,0 +1,158 @@
+/* Register.css */
+.register-container {
+    display: flex;
+    height: 100vh;
+    color: white;
+    flex-direction: row-reverse;
+  }
+  
+  .register-left-side {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+  }
+  
+  .register-left-side .logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 1rem;
+  }
+  
+  .register-left-side .logo img {
+    width: 200px;
+    height: 200px;
+    margin-bottom: 1rem;
+  }
+  
+  .register-left-side .logo h1 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .register-left-side .logo p {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.8);
+  }
+  
+  .register-right-side {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #ffffff9a;
+    padding: 2rem;
+  }
+  
+  .register-form {
+    background: rgba(255, 255, 255, 0.8 );
+    backdrop-filter: blur(5px);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+  }
+  
+  .register-form h2 {
+    margin-bottom: 1rem;
+    font-size: 2rem;
+    color: rgba(0, 0, 0, 0.8);
+  }
+  
+  .register-form p {
+    margin-bottom: 2rem;
+    color: rgba(0, 0, 0, 0.8);
+  }
+  
+  .form-group {
+    margin-bottom: 1.5rem;
+    text-align: left;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: rgba(0, 0, 0, 0.8);
+  }
+  
+  .form-group input {
+    width: 100%;
+    padding: 0.75rem;
+    border: none;
+    border-radius: 5px;
+    background: rgba(0, 0, 0, 0.2);
+    color: rgb(0, 0, 0);
+    font-size: 0.7rem;
+  }
+  
+  .register-button,
+  .google-button {
+    width: 100%;
+    padding: 0.75rem;
+    border: none;
+    border-radius: 5px;
+    background: #2575fc;
+    color: white;
+    font-size: 0.8rem;
+    cursor: pointer;
+    margin-bottom: 1rem;
+  }
+  
+  .google-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 10px 20px;
+    background-color: #f44242;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .google-button:hover {
+    background-color: #df4747;
+  }
+  
+  .google-button i {
+    font-size: 1.2rem;
+  }
+  
+  .signup-link {
+    margin-top: 1rem;
+  }
+  
+  .signin-link a {
+    color: #2575fc;
+    text-decoration: none;
+  }
+  
+  .signin-link a:hover {
+    text-decoration: underline;
+  }
+  
+  .divider {
+    display: flex;
+    align-items: center;
+    margin: 15px 0;
+    font-size: 0.9rem;
+    opacity: 0.8;
+  }
+  
+  .divider::before,
+  .divider::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: white;
+    margin: 0 10px;
+  }
