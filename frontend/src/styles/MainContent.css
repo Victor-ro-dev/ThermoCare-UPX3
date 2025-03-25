@@ -1,0 +1,66 @@
+.main-content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: #ffffff;
+  padding: 50px;
+  margin: 50px;
+  height: 500px;
+}
+
+
+.headline {
+  font-size: 4rem;
+  margin-bottom: 20px;
+  z-index: 1;
+}
+
+.description {
+  font-size: 1.5rem;
+  margin-bottom: 40px;
+  max-width: 70%;
+  color: #a8a8a8;
+  z-index: 1;
+}
+
+.buttons {
+  display: flex;
+  gap: 20px;
+  z-index: 1;
+}
+
+.buttons .signin,
+.buttons .signup {
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  border-radius: 5px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.buttons .signin {
+  background: linear-gradient(90deg, #0e44f6, #0e12f6);
+  border-radius: 5px;
+  color: white;
+}
+
+.buttons .signin:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+}
+
+.buttons .signup {
+  border: 1px solid #d5dce4;
+  border-radius: 5px;
+  color: white;
+}
+
+.buttons .signup:hover {
+  background-color: #d5dce4; /* Cor de fundo ao passar o mouse sobre o botão */
+  color: #111111; /* Cor do texto ao passar o mouse sobre o botão */
+  transform: scale(1.05);
+}
