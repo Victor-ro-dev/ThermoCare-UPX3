@@ -57,6 +57,7 @@
   border: 1px solid #d5dce4;
   border-radius: 5px;
   color: white;
+  background: none;
 }
 
 .buttons .signup:hover {

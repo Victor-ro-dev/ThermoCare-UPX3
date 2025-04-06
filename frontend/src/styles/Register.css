@@ -88,7 +88,7 @@
     border-radius: 5px;
     background: rgba(0, 0, 0, 0.2);
     color: rgb(0, 0, 0);
-    font-size: 0.7rem;
+    font-size: 0.9rem;
   }
   
   .register-button,
@@ -155,4 +155,10 @@
     height: 1px;
     background: white;
     margin: 0 10px;
+  }
+
+  .form-group input:-webkit-autofill {
+    -webkit-text-fill-color: rgb(5, 5, 5) !important;
+    -webkit-box-shadow: 0 0 0px 1000px inherit inset !important;
+    box-shadow: 0 0 0px 1000px inherit inset !important;
   }

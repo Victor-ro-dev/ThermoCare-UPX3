@@ -161,3 +161,9 @@
   background: white;
   margin: 0 10px;
 }
+
+.form-group-login input:-webkit-autofill {
+  -webkit-text-fill-color: white !important;
+  -webkit-box-shadow: 0 0 0px 1000px inherit inset !important;
+  box-shadow: 0 0 0px 1000px inherit inset !important;
+}

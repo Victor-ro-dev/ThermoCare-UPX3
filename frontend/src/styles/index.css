@@ -50,4 +50,18 @@ img {
   display: block;
 }
 
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0px 1000px inherit inset !important; /* Herda a cor de fundo do input */
+  box-shadow: 0 0 0px 1000px inherit inset !important;
+  transition: background-color 5000s ease-in-out 0s;
+}
 
+/* Adicione isso ao seu arquivo CSS global */
+#nprogress .bar {
+  background: #0e44f6; /* Cor da barra */
+  height: 4px; /* Altura da barra */
+}
+
+#nprogress .peg {
+  box-shadow: 0 0 10px #0e44f6, 0 0 5px #0e44f6;
+}
