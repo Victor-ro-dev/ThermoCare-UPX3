@@ -26,9 +26,21 @@ const Feature = ({ title, description, image }) => {
 };
 
 const Features = () => {
+    const [ref, inView] = createInViewObserver(0.2, false); 
+
     return (
         <div className="features" id="funcionalidades">
-            <h2>Funcionalidades</h2>
+            {/* Título com animação */}
+            <motion.h2
+                ref={ref}
+                initial={{ opacity: 0, y: 50 }} // Começa invisível e deslocado para baixo
+                animate={{ opacity: inView ? 1 : 0, y: inView ? 0 : 50 }} // Aparece ao entrar, some ao sair
+                transition={{ duration: 0.6 }}
+            >
+                Funcionalidades
+            </motion.h2>
+
+            {/* Lista de funcionalidades */}
             <Feature
                 title="Monitoramento de Temperatura"
                 description="Monitore a temperatura dos cômodos em tempo real."

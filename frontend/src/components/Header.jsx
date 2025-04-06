@@ -35,7 +35,7 @@ const Header = () => {
             <button className="singin">{user.username}</button>
             <button
               onClick={handleLogout}
-              className="signin"
+              className="singin"
               disabled={loading} // Desabilita o botão enquanto faz logout
             >
               {loading ? "Saindo..." : "Logout"}
@@ -44,10 +44,10 @@ const Header = () => {
         ) : (
           <>
             <Link to="/login">
-              <button className="signin">Sign In</button>
+              <button className="singin">Sign In</button>
             </Link>
             <Link to="/register">
-              <button className="signup">Create an account</button>
+              <button className="singup">Create an account</button>
             </Link>
           </>
         )}
