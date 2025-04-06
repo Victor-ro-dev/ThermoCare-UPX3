@@ -1,8 +1,8 @@
 from fastapi import FastAPI
-from src.main.routes.sensor_route import router as sensor_temp_router
+from src.api.routes.sensor_route import router as sensor_temp_router
 from fastapi.middleware.cors import CORSMiddleware
-from src.main.routes.nursing_home_route import router as nursing_home_router
-from src.main.routes.user_route import router as user_router
+from src.api.routes.nursing_route import router as nursing_home_router
+from src.api.routes.user_route import router as user_router
 
 
 app = FastAPI()

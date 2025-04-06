@@ -1,7 +1,7 @@
 from logging.config import fileConfig
-from src.models.settings.db_configs import Base
-from src.models.settings.db_configs import SQLALCHEMY_DATABASE_URL
-from src.models.entities import models 
+from src.core.settings.db_configs import Base
+from src.core.settings.db_configs import SQLALCHEMY_DATABASE_URL
+from src.core.entities import models 
 
 from sqlalchemy import engine_from_config
 from sqlalchemy import pool
