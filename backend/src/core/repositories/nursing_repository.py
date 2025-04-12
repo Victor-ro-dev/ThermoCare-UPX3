@@ -12,22 +12,29 @@ class NursingHomeRepository(NursingInterface):
         self.__db = db
 
     async def create(self, nursing_home: NursingHomeSchema) -> NursingHome:
-        query = insert(NursingHome).values(
-            name=nursing_home.name,
-            cep=nursing_home.cep,
-            logradouro=nursing_home.logradouro,
-            numero=nursing_home.numero,
-            bairro=nursing_home.bairro,
-            cidade=nursing_home.cidade,
-            estado=nursing_home.estado,
-            complemento=nursing_home.complemento
+        print(nursing_home)
+        query = (
+            insert(NursingHome)
+            .values(
+                name=nursing_home.name,
+                cep=nursing_home.cep,
+                logradouro=nursing_home.logradouro,
+                numero=nursing_home.numero,
+                bairro=nursing_home.bairro,
+                cidade=nursing_home.cidade,
+                estado=nursing_home.estado,
+                complemento=nursing_home.complemento,
+            )
+            .returning(NursingHome.id)  # Retorna apenas o ID gerado
         )
-        await self.__db.execute(query)
-        await self.__db.commit()
-        
-        # Retornar o objeto NursingHome criado
+        result = await self.__db.execute(query)
+        await self.__db.commit() 
+
+        # Obtém o ID gerado
+        generated_id = result.scalar_one()
+
         return NursingHome(
-            id=nursing_home.id,
+            id=generated_id,
             name=nursing_home.name,
             cep=nursing_home.cep,
             logradouro=nursing_home.logradouro,
@@ -35,7 +42,7 @@ class NursingHomeRepository(NursingInterface):
             bairro=nursing_home.bairro,
             cidade=nursing_home.cidade,
             estado=nursing_home.estado,
-            complemento=nursing_home.complemento
+            complemento=nursing_home.complemento,
         )
     
     async def get_nursing_by_id(self, nursing_home_id: str) -> Optional[NursingHome]:

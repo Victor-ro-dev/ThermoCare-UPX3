@@ -10,7 +10,9 @@ class NursingService(NursingServiceInterface):
 
     async def create_nursing(self, nursing: NursingHomeSchema) -> NursingHomeSchema:
         """Cria um novo asilo"""
-
+        existing_nursing = await self.repository.get_by_name(nursing.name)
+        if existing_nursing:
+            raise ValueError("Asilo já cadastrado")
         # Criar o objeto Pydantic
         nursing_data = NursingHomeSchema(
             name=nursing.name,

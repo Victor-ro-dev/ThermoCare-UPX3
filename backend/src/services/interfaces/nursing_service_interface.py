@@ -12,18 +12,3 @@ class NursingServiceInterface(ABC):
     async def get_nursing_by_id(self, nursing_id: str) -> NursingHomeSchema:
         """Busca um asilo pelo ID."""
         pass
-
-    @abstractmethod
-    async def get_all_nursing_homes(self) -> List[NursingHomeSchema]:
-        """Obtém todos os asilos."""
-        pass
-
-    @abstractmethod
-    async def update_nursing(self, nursing_id: int, nursing_data: dict) -> NursingHomeSchema:
-        """Atualiza os dados de um asilo."""
-        pass
-
-    @abstractmethod
-    async def delete_nursing(self, nursing_id: int) -> None:
-        """Exclui um asilo."""
-        pass
