@@ -11,7 +11,7 @@ class SensorTempSchema(BaseModel):
         from_attributes = True
 
 class NursingHomeSchema(BaseModel):
-    id: Optional[int]
+    id: Optional[int] = None
     name: str
     cep: str
     logradouro: str
@@ -19,7 +19,7 @@ class NursingHomeSchema(BaseModel):
     bairro: str
     cidade: str
     estado: str
-    complemento: Optional[str]
+    complemento: Optional[str] = None
 
     class Config:
         from_attributes = True
