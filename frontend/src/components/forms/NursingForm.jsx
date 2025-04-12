@@ -1,172 +1,147 @@
-import React, { useState } from "react";
-import createInViewObserver from '../../utils/functions';
+import React from "react";
+import { useNursing } from "../../hooks/useNursing";
 
 const NursingForm = () => {
-  const [name, setName] = useState("");
-  const [cep, setCep] = useState("");
-  const [logradouro, setLogradouro] = useState("");
-  const [numero, setNumero] = useState("");
-  const [bairro, setBairro] = useState("");
-  const [cidade, setCidade] = useState("");
-  const [estado, setEstado] = useState("");
-  const [complemento, setComplemento] = useState("");
-  const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false);
+    const {
+        name,
+        setName,
+        cep,
+        setCep,
+        logradouro,
+        setLogradouro,
+        numero,
+        setNumero,
+        bairro,
+        setBairro,
+        cidade,
+        setCidade,
+        estado,
+        setEstado,
+        complemento,
+        setComplemento,
+        handleCepChange,
+        handleSubmit,
+        loading,
+        error,
+    } = useNursing();
 
-  
+    // Verifica se o CEP é válido (8 caracteres)
+    const isCepValid = cep.length === 8;
 
-  // Função para buscar o endereço pelo CEP
-  const handleCepChange = async (e) => {
-    const cepValue = e.target.value.replace(/\D/g, ""); // Remove caracteres não numéricos
-    setCep(cepValue);
+    const handleFormSubmit = async (e) => {
+        e.preventDefault();
 
-    if (cepValue.length === 8) {
-      try {
-        setLoading(true);
-        const response = await fetch(`https://viacep.com.br/ws/${cepValue}/json/`);
-        const data = await response.json();
+        // Log dos dados antes de enviar
+        console.log("Dados do formulário antes do envio:", {
+            name,
+            cep,
+            logradouro,
+            numero,
+            bairro,
+            cidade,
+            estado,
+            complemento,
+        });
 
-        if (data.erro) {
-          setError("CEP não encontrado.");
-          setLogradouro("");
-          setBairro("");
-          setCidade("");
-          setEstado("");
-        } else {
-          setError("");
-          setLogradouro(data.logradouro || "");
-          setBairro(data.bairro || "");
-          setCidade(data.localidade || "");
-          setEstado(data.uf || "");
+        try {
+            await handleSubmit(e);
+        } catch (err) {
+            console.error("Erro ao enviar o formulário:", err);
         }
-      } catch (err) {
-        setError("Erro ao buscar o CEP. Tente novamente.");
-      } finally {
-        setLoading(false);
-      }
-    }
-  };
+    };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    if (!name.trim() || !cep.trim() || !logradouro.trim() || !numero.trim() || !bairro.trim() || !cidade.trim() || !estado.trim()) {
-      setError("Todos os campos obrigatórios devem ser preenchidos.");
-      return;
-    }
-
-    alert("Dados enviados com sucesso!");
-  };
-
-  return (
-    <form className="nursing-form" onSubmit={handleSubmit}>
-      {error && <p style={{ color: "red" }}>{error}</p>}
-
-      <div className="form-row">
-        <div className="form-group">
-          <label htmlFor="nursing-name">Nome do Asilo</label>
-          <input
-            type="text"
-            id="nursing-name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            required
-          />
-        </div>
-
-        <div className="form-group">
-          <label htmlFor="nursing-cep">CEP</label>
-          <input
-            type="text"
-            id="nursing-cep"
-            value={cep}
-            onChange={handleCepChange}
-            maxLength="9"
-            required
-          />
-        </div>
-      </div>
-
-      <div className="form-row">
-        <div className="form-group">
-          <label htmlFor="nursing-logradouro">Endereço</label>
-          <input
-            type="text"
-            id="nursing-logradouro"
-            value={logradouro}
-            onChange={(e) => setLogradouro(e.target.value)}
-            disabled={!cep || loading}
-            required
-          />
-        </div>
-
-        <div className="form-group">
-          <label htmlFor="nursing-numero">Número</label>
-          <input
-            type="text"
-            id="nursing-numero"
-            value={numero}
-            onChange={(e) => setNumero(e.target.value)}
-            required
-          />
-        </div>
-      </div>
-
-      <div className="form-row">
-        <div className="form-group">
-          <label htmlFor="nursing-bairro">Bairro</label>
-          <input
-            type="text"
-            id="nursing-bairro"
-            value={bairro}
-            onChange={(e) => setBairro(e.target.value)}
-            disabled={!cep || loading}
-            required
-          />
-        </div>
-
-        <div className="form-group">
-          <label htmlFor="nursing-cidade">Cidade</label>
-          <input
-            type="text"
-            id="nursing-cidade"
-            value={cidade}
-            onChange={(e) => setCidade(e.target.value)}
-            disabled={!cep || loading}
-            required
-          />
-        </div>
-      </div>
-
-      <div className="form-row">
-        <div className="form-group">
-          <label htmlFor="nursing-estado">Estado</label>
-          <input
-            type="text"
-            id="nursing-estado"
-            value={estado}
-            onChange={(e) => setEstado(e.target.value)}
-            disabled={!cep || loading}
-            required
-          />
-        </div>
-
-        <div className="form-group">
-          <label htmlFor="nursing-complemento">Complemento</label>
-          <input
-            type="text"
-            id="nursing-complemento"
-            value={complemento}
-            onChange={(e) => setComplemento(e.target.value)}
-          />
-        </div>
-      </div>
-
-      <button className="subimit-button" type="submit" disabled={loading}>
-        {loading ? "Carregando..." : "Cadastrar"}
-      </button>
-    </form>
-  );
+    return (
+        <form className="nursing-form" onSubmit={handleFormSubmit}>
+            <h1>Cadastro do Asilo</h1>
+            <div className="form-group">
+                <label htmlFor="name">Nome</label>
+                <input
+                    type="text"
+                    id="name"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    required
+                />
+            </div>
+            <div className="form-group">
+                <label htmlFor="cep">CEP</label>
+                <input
+                    type="text"
+                    id="cep"
+                    value={cep}
+                    onChange={handleCepChange}
+                    required
+                />
+            </div>
+            <div className="form-group">
+                <label htmlFor="logradouro">Endereço</label>
+                <input
+                    type="text"
+                    id="logradouro"
+                    value={logradouro}
+                    onChange={(e) => setLogradouro(e.target.value)}
+                    disabled={!isCepValid} // Desabilita se o CEP não for válido
+                    required
+                />
+            </div>
+            <div className="form-group small">
+                <label htmlFor="numero">Número</label>
+                <input
+                    type="text"
+                    id="numero"
+                    value={numero}
+                    onChange={(e) => setNumero(e.target.value)}
+                    required
+                />
+            </div>
+            <div className="form-group">
+                <label htmlFor="bairro">Bairro</label>
+                <input
+                    type="text"
+                    id="bairro"
+                    value={bairro}
+                    onChange={(e) => setBairro(e.target.value)}
+                    disabled={!isCepValid} // Desabilita se o CEP não for válido
+                    required
+                />
+            </div>
+            <div className="form-group">
+                <label htmlFor="cidade">Cidade</label>
+                <input
+                    type="text"
+                    id="cidade"
+                    value={cidade}
+                    onChange={(e) => setCidade(e.target.value)}
+                    disabled={!isCepValid} // Desabilita se o CEP não for válido
+                    required
+                />
+            </div>
+            <div className="form-group small">
+                <label htmlFor="estado">Estado</label>
+                <input
+                    type="text"
+                    id="estado"
+                    value={estado}
+                    onChange={(e) => setEstado(e.target.value)}
+                    disabled={!isCepValid} // Desabilita se o CEP não for válido
+                    required
+                />
+            </div>
+            <div className="form-group full-width">
+                <label htmlFor="complemento">Complemento</label>
+                <input
+                    type="text"
+                    id="complemento"
+                    value={complemento}
+                    onChange={(e) => setComplemento(e.target.value)}
+                />
+            </div>
+            {error && <p className="error-message">{error}</p>}
+            <button className="submit-button" type="submit" disabled={loading}>
+                {loading ? "Carregando..." : "Cadastrar Asilo"}
+            </button>
+        </form>
+    );
 };
 
 export default NursingForm;
