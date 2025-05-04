@@ -1,0 +1,253 @@
+.dashboard-background {
+    display: flex;
+    height: 100vh;
+    background-color: #2a30f0;
+}
+
+.dashboard-main-content{
+    background-color: #111111;
+    height: 100vh;
+    width: 100%;
+    margin-top: 20px;
+    border-radius: 10px 0px 0px 0px  ;
+    position: relative;
+    z-index: 999;
+}
+
+.dashboard-header{
+    display: flex;
+    justify-content: space-between;
+    padding: 40px 30px 10px 30px;
+    border-bottom: 1px solid #5B5E62;
+}
+
+.dashboard-left-side{
+    height: 100vh;
+    width: 20%;
+}
+
+.logo-container{
+    padding: 30px 0px 0px 20px;
+}
+
+.dashboard-menu{
+    margin: 30px 0px 0px 10px;
+
+    padding-top: 10px;
+}
+
+.dashboard-item{
+    padding: 0px 0px 0px 0px;
+    margin: 30px 0px;;
+    cursor: pointer;
+    position: relative;
+}
+
+.dashboard-item button {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    gap: 0.8rem; 
+    background: none;
+    border: none;
+    color: #f0f0f0;
+    font-size: 1.1rem;
+    cursor: pointer;
+    padding: 0.6rem 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.dashboard-item:hover,
+.dashboard-button.active {
+    background-color: #111111;
+    border-radius: 8px 0px 0px 8px;
+}
+
+/* Adicione estes seletores para manter os arcos no botão ativo */
+.dashboard-item:hover::before,
+.dashboard-button.active::before {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: -50px;
+    width: 50px;
+    height: 50px;
+    background-color: transparent ;
+    border-radius: 50%;
+    box-shadow: 35px 35px 0px 10px #111111;
+    pointer-events: none;
+}
+
+.dashboard-item:hover::after,
+.dashboard-button.active::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    bottom: -50px;
+    width: 50px;
+    height: 50px;
+    background-color: transparent ;
+    border-radius: 50%;
+    box-shadow: 35px -35px 0px 10px #111111;
+    pointer-events: none;
+}
+
+.dashboard-item .dashboard-button i {
+    font-size: 1.2rem; /* Tamanho do ícone */
+}
+
+.dashboard-button{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    gap: 0.8rem; 
+    background: #2a30f0;
+    border-radius: 10px;
+    color: #f0f0f0;
+    font-size: 0.9rem;
+    cursor: pointer;
+    padding: 0.4rem 1rem;
+}
+
+
+.dashboard-select {
+    padding: 0.5rem;
+    font-size: 0.9rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff;
+    color: #333;
+    cursor: pointer;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    margin-left: 1rem;
+}
+
+.dashboard-select option {
+    font-size: 1rem;
+    color: #333;
+}
+
+.dashboard-header-actions{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.dashboard-sensor-config {
+    margin-top: 1rem;
+    padding: 1rem;
+}
+
+.dashboard-sensor-config-title h4 {
+    margin-bottom: 1rem;
+    color: #333;
+    font-size: 1.5rem;
+}
+
+.dashboard-sensor-config-cards {
+    display: flex;
+    gap: 1rem; 
+    flex-wrap: wrap; 
+}
+
+.sensor-card {
+    flex: 1 1 calc(33.33% - 1rem); 
+    background-color: #333333;
+    border-radius: 15px;
+    padding: 1rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.sensor-card h4 {
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+    color: #e6e6e6;
+}
+
+.sensor-card p {
+    font-size: 1rem;
+    color: #dbdbdb;
+}
+
+.sensor-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.dashboard-sensor-infos {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+    flex-wrap: wrap; 
+    justify-content: space-around; 
+}
+
+.sensor-info-card {
+    min-width: 40%;
+    background-color:#333333;
+    border-radius: 15px;
+    padding: 0.5rem 1rem;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.sensor-info-card i {
+    font-size: 7rem;
+    color: #007bff;
+    margin-bottom: 1rem;
+}
+.refresh-button i {
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 2rem;
+    margin: 0;
+}
+
+.refresh-button:hover i {
+    color: #007bff;
+    transition: color 0.3s ease;
+    
+}
+
+.sensor-info-card header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 3rem;
+    text-align: left;
+    font-size: 1rem;
+    color:  #e6e6e6;
+}
+
+.sensor-info-card p {
+    font-weight: bold;
+    font-size: 2.2rem;
+    color: #dbdbdb;
+}
+
+.sensor-info-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.modal-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+  }
+  
+  .modal-content {
+    background: #fff;
+    color: #222;
+    padding: 2rem;
+    border-radius: 12px;
+    min-width: 300px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+  }

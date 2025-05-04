@@ -167,3 +167,10 @@
   -webkit-box-shadow: 0 0 0px 1000px inherit inset !important;
   box-shadow: 0 0 0px 1000px inherit inset !important;
 }
+
+.profile-group{
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 2rem;
+  max-height: 700px;
+}

@@ -22,8 +22,8 @@
 }
 
 .feature-image {
-    flex: 1;
-    max-width: 200px;
+    flex: 2;
+    max-width: 700px;
     margin-right: 20px;
 }
 
@@ -33,8 +33,8 @@
 }
 
 .feature-text {
-    flex: 2;
-    text-align: left;
+    flex: 1;
+    text-align: center;
 }
 
 .feature-text h3 {
