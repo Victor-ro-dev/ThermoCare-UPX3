@@ -2,6 +2,9 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import '../../styles/Features.css';
 import createInViewObserver from '../../utils/functions';
+import homeImg from '../../assets/home.png';
+import alertImg from '../../assets/alerta.png';
+import asiloImg from '../../assets/asilo.png';
 
 const Feature = ({ title, description, image }) => {
     const [ref, inView] = createInViewObserver(0.2, false);
@@ -44,17 +47,17 @@ const Features = () => {
             <Feature
                 title="Monitoramento de Temperatura"
                 description="Monitore a temperatura dos cômodos em tempo real."
-                image="https://i.imgur.com/1Q2Q6QF.png"
+                image={homeImg} 
             />
             <Feature
                 title="Sistema de Notificações"
-                description="Receba notificações em casos de temperaturas baixas e altas."
-                image="https://i.imgur.com/1Q2Q6QF.png"
+                description="Receba notificações no WhatsApp e Dashboard em casos de temperaturas baixas e altas."
+                image={alertImg}
             />
             <Feature
-                title="Análise de Dados"
-                description="Analise como está a temperatura do ambiente em cada semana."
-                image="https://i.imgur.com/1Q2Q6QF.png"
+                title="Cadastro de Asilos"
+                description="Cadastre asilos e visualize sua localização no mapa."
+                image={asiloImg}
             />
         </div>
     );

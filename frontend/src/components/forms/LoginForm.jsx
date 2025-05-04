@@ -9,7 +9,7 @@ const LoginForm = () => {
     setEmail, 
     password, 
     setPassword, 
-    handleSubmit,  // Mudei de 'login' para 'handleSubmit' para ficar consistente
+    handleSubmit,
     loading, 
     error 
   } = useLogin();
