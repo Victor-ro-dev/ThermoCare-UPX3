@@ -11,6 +11,8 @@ export async function registerUser(userData) {
         credentials: "include",
     });
 
+    
+    
     if (!response.ok) {
         throw new Error("Erro ao registrar usuário");
     }
@@ -75,4 +77,19 @@ export async function logoutUser() {
     if (!response.ok) {
         throw new Error("Falha ao fazer logout");
     }
+}
+
+export async function getUserProfile() {
+    const response = await fetch(`${API_URL}/user`, {
+        method: "GET",
+        credentials: "include",
+        headers: {
+            "Accept": "application/json",
+            "Content-Type": "application/json",
+        },
+    });
+    if (!response.ok) {
+        throw new Error("Erro ao buscar perfil do usuário");
+    }
+    return response.json();
 }
