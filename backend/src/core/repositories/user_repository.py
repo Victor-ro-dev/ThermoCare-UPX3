@@ -61,3 +61,4 @@ class UserRepository(UserInterface):
             
             await self.__db.delete(user)
             await self.__db.commit()
+

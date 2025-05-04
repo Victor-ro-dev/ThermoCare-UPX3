@@ -2,13 +2,11 @@ from fastapi import APIRouter, Depends, HTTPException, status, Response, Request
 from sqlalchemy.ext.asyncio import AsyncSession
 from typing import List
 
-from src.core.schemas.bd_schema import UserSchema, UserLoginSchema, UserCreateSchema
+from src.core.schemas.bd_schema import UserSchema, UserLoginSchema, UserCreateSchema, ProfileSchema
 from src.core.settings.db_connection_handler import db_connection_handler 
 from src.services.user_service import UserService
 from src.services.dependencies.auth_dependence import get_current_user
 from src.core.repositories.user_repository import UserRepository
-from src.utils.auth.cookie_manager import CookieManager
-from src.utils.auth.token_manager import TokenManager
 from src.services.auth_service import AuthService
 
 
@@ -20,7 +18,7 @@ async def create_user(user: UserCreateSchema, response: Response, db: AsyncSessi
     """Cria um novo usuário."""
     try:
         user_service = UserService(UserRepository(db))
-        new_user = await user_service.register_user(user, response)
+        new_user = await user_service.create_user(user, response)
         
         return new_user
     except ValueError as e:
@@ -62,7 +60,7 @@ async def logout_user(response: Response):
     """Realiza logout removendo os cookies de autenticação"""
     try:
         # Remove os cookies de autenticação
-        AuthService.exclude_cookies(response)
+        AuthService.remove_cookies(response)
         print("Logout realizado com sucesso")
         
         return {"message": "Logout realizado com sucesso"}
@@ -72,14 +70,22 @@ async def logout_user(response: Response):
             detail=str(e)
         )
 
-@router.get("/users", response_model=List[UserSchema], status_code=status.HTTP_200_OK)
-async def read_users(
+@router.get("/user", response_model=ProfileSchema, status_code=status.HTTP_200_OK)
+async def read_user(
+    request: Request,
+    response: Response,
     db: AsyncSession = Depends(db_connection_handler.get_db),
-    current_user: dict = Depends(get_current_user),  # Verifica o token
 ):
-    """Obtém todos os usuários."""
-    user_service = UserService(db)
-    return await user_service.get_all_users()
+    get_user = await AuthService.get_authenticated_user(request, response, db)
+    email = get_user.email
+    try:
+        user_service = UserService(UserRepository(db))
+        user = await user_service.get_user_by_email(email)
+        # Converta para ProfileSchema explicitamente
+        return ProfileSchema.model_validate(user)
+    except HTTPException as e:
+        raise e
+    
 
 
 @router.put("/users/{user_id}", response_model=UserSchema, status_code=status.HTTP_200_OK)

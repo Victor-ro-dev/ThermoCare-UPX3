@@ -1,4 +1,4 @@
-from fastapi import Response
+from fastapi import Response, Request
 from src.core.schemas.bd_schema import UserSchema, UserLoginSchema, UserCreateSchema
 from src.utils.auth.hash_manager import HashManager
 from src.utils.auth.token_manager import TokenManager
@@ -114,3 +114,5 @@ class UserService(UserServiceInterface):
         user = await self.repository.get_by_email(user_email)
         return user
     
+    
+       

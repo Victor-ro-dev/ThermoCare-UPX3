@@ -1,9 +1,6 @@
 from application.configs.mqtt_configs import mqtt_broker_config
-import sqlite3
 import json
 from application.main.db.connection_db import dataBaseConnection
-
-
 
 class MqttCallbacks:
 

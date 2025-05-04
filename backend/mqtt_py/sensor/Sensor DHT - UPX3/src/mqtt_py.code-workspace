@@ -1,0 +1,12 @@
+{
+	"folders": [
+		{
+			"path": "../../.."
+		},
+		{
+			"name": "Sensor DHT - UPX3",
+			"path": ".."
+		}
+	],
+	"settings": {}
+}

@@ -2,7 +2,7 @@ from fastapi import APIRouter, Depends, HTTPException, Response, Request
 from sqlalchemy.ext.asyncio import AsyncSession
 from typing import List
 
-from src.core.schemas.bd_schema import NursingHomeSchema
+from src.core.schemas.bd_schema import NursingHomeSchema, NursingProfileSchema
 from src.core.repositories.nursing_repository import NursingHomeRepository
 from src.core.repositories.user_repository import UserRepository
 from src.core.settings.db_connection_handler import db_connection_handler
@@ -10,7 +10,7 @@ from src.services.nursing_service import NursingService
 from src.services.user_service import UserService
 from src.utils.auth.cookie_manager import CookieManager
 from src.utils.auth.token_manager import TokenManager
-
+from src.services.auth_service import AuthService
 
 
 
@@ -50,13 +50,18 @@ async def create_nursing(
 
 #----------------------------------------------------------------------------------------------------
 
-@router.get("/nursing/{nursing_id}", response_model=NursingHomeSchema)
-async def get_nursing_by_id(nursing_id: str, db: AsyncSession = Depends(db_connection_handler.get_db)):
-    """Busca um asilo pelo ID."""
+@router.get("/nursing-home", response_model=NursingProfileSchema) 
+async def get_nursing_by_user(
+    request: Request,
+    response: Response,
+    db: AsyncSession = Depends(db_connection_handler.get_db),
+):
+    """Obtém o asilo vinculado ao usuário autenticado."""
+    get_user = await AuthService.get_authenticated_user(request, response, db)
+    nursing_home_id = get_user.nursing_home_id
     try:
         nursing_service = NursingService(NursingHomeRepository(db))
-        nursing = await nursing_service.get_nursing_by_id(nursing_id)
-        
-        return nursing
+        nursing = await nursing_service.get_nursing_by_id(nursing_home_id)
+        return NursingProfileSchema.model_validate(nursing)
     except ValueError as e:
         raise HTTPException(status_code=400, detail=str(e))
