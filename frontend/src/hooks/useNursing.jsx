@@ -14,7 +14,7 @@ export const useNursing = () => {
     const [complemento, setComplemento] = useState("");
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
-    const { user, loading: authLoading } = useAuth(); // Verifica o usuário autenticado
+    const { user, loading: authLoading } = useAuth(); 
     const navigate = useNavigate();
 
     // Redireciona para login se o usuário não estiver autenticado
@@ -77,8 +77,8 @@ export const useNursing = () => {
                 complemento,
             };
             console.log("Enviando dados para a API:", nurseData);
-            await registerNurse(nurseData); // Chama a API para registrar os dados
-            navigate("/nurses"); // Redireciona para a lista de enfermeiros após o registro
+            await registerNurse(nurseData); 
+            navigate("/dashboard");
         } catch (err) {
             setError(err.message || "Erro ao registrar o asilo.");
         } finally {

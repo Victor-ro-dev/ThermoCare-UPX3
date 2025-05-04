@@ -26,7 +26,6 @@ export function AuthProvider({ children }) {
             setLoading(true);
             const userData = await loginUser(credentials);
             setUser(userData);
-            window.location.assign('/')
             return userData;
         } finally {
             setLoading(false);

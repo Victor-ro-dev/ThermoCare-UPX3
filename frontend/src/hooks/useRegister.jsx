@@ -39,7 +39,7 @@ export const useRegister = () => {
         password,
         password_confirmation,
       });
-      navigate("/");
+      navigate("/nursing");
     } catch (err) {
       setError(err.response?.data?.message || err.message || "Falha no registro");
     } finally {

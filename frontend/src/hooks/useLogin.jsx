@@ -24,7 +24,7 @@ export const useLogin = () => {
     try {
       
       await handleLogin({ email, password });
-      navigate("/");
+      navigate("/dashboard");
     } catch (err) {
       setError(err.message || "Falha no login. Tente novamente.");
     } finally {
